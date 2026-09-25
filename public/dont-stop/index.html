@@ -1,0 +1,1259 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Don't Stop — Rompendo Limites</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&family=Inter+Tight:ital,wght@0,500;0,600;1,800&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream:  #f5efd9;
+      --navy:   #1b3874;
+      --royal:  #1e469c;
+      --yellow: #f3d45f;
+      --butter: #efe08a;
+      --ink:    #1d1b18;
+      --s: 1;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
+    body {
+      background: #0b0f14;
+      font-family: 'Inter Tight', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      overflow: hidden;
+    }
+
+    /* ── Visualizador tipo carrossel do Instagram ── */
+    .viewer {
+      position: relative;
+      width: calc(1080px * var(--s));
+      height: calc(1350px * var(--s));
+    }
+
+    .track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none;
+    }
+
+    .track::-webkit-scrollbar { display: none; }
+
+    .frame {
+      flex: none;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      scroll-snap-align: start;
+    }
+
+    .nav {
+      position: absolute;
+      top: 50%;
+      z-index: 10;
+      width: 40px;
+      height: 40px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .85);
+      color: #222;
+      font-size: 20px;
+      line-height: 40px;
+      cursor: pointer;
+      transform: translateY(-50%);
+      transition: opacity .2s;
+    }
+
+    .nav.prev { left: 12px; }
+    .nav.next { right: 12px; }
+    .nav[disabled] { opacity: 0; pointer-events: none; }
+
+    .dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dots i {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, .3);
+      transition: background .2s;
+    }
+
+    .dots i.on { background: #fff; }
+
+    /* ?export: slides em tamanho real, um embaixo do outro, para gerar os PNGs */
+    body.export {
+      display: block;
+      background: none;
+      overflow: visible;
+    }
+
+    body.export .viewer,
+    body.export .track { width: auto; height: auto; display: block; overflow: visible; }
+    body.export .frame { width: 1080px; height: 1350px; }
+    body.export .slide { transform: none; }
+    body.export .nav,
+    body.export .dots { display: none; }
+
+    /* ── Slide base: 1080x1350 (4:5) ── */
+    .slide {
+      position: relative;
+      width: 1080px;
+      height: 1350px;
+      overflow: hidden;
+      transform: scale(var(--s));
+      transform-origin: 0 0;
+      text-transform: uppercase;
+    }
+
+    .slide canvas {
+      position: absolute;
+      inset: 0;
+      width: 1080px;
+      height: 1350px;
+    }
+
+    .slide .grain {
+      z-index: 5;
+      mix-blend-mode: overlay;
+      opacity: .5;
+      pointer-events: none;
+    }
+
+    .slide .txt {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+    }
+
+    .handle {
+      position: absolute;
+      top: 88px;
+      width: 100%;
+      text-align: center;
+      font-weight: 500;
+      font-size: 23px;
+      letter-spacing: .01em;
+      text-transform: none;
+    }
+
+    .big {
+      position: absolute;
+      font-family: 'Inter', sans-serif;
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -.02em;
+      white-space: nowrap;
+    }
+
+    .frag {
+      position: absolute;
+      font-weight: 500;
+      line-height: 1.24;
+      letter-spacing: -.035em;
+    }
+
+    .frag span { display: block; }
+
+    em {
+      font-style: italic;
+      font-weight: 800;
+    }
+
+    /* ── 1: céu, campo e figura; título creme desfocado ── */
+    .s1 .handle { color: var(--butter); }
+
+    .s1 .big {
+      left: 0;
+      width: 100%;
+      text-align: center;
+      font-size: 272px;
+      color: var(--cream);
+      filter: blur(9px);
+      opacity: .96;
+    }
+
+    .s1 .big.l1 { top: 118px; }
+    .s1 .big.l2 { top: 398px; }
+
+    .s1 .frag {
+      font-size: 42px;
+      color: var(--navy);
+    }
+
+    .s1 .frag.a { left: 82px;  top: 206px; }
+    .s1 .frag.b { left: 712px; top: 372px; }
+    .s1 .frag.c { left: 252px; top: 584px; }
+
+    .s1 .closing {
+      position: absolute;
+      top: 1136px;
+      width: 100%;
+      text-align: center;
+      color: var(--cream);
+      text-shadow: 0 2px 14px rgba(15, 26, 18, .55);
+    }
+
+    .s1 .closing .line {
+      display: inline-block;
+      padding-bottom: 6px;
+      border-bottom: 2.5px solid var(--cream);
+      font-weight: 500;
+      font-size: 50px;
+      letter-spacing: -.03em;
+    }
+
+    .s1 .closing .info {
+      margin-top: 22px;
+      font-weight: 500;
+      font-size: 23px;
+      letter-spacing: .06em;
+    }
+
+    /* ── 2: campo dourado, montanhas; título amarelo e texto branco ── */
+    .s2 .big {
+      font-size: 100px;
+      color: var(--yellow);
+      text-shadow: 0 2px 18px rgba(40, 28, 10, .25);
+    }
+
+    .s2 .big.w1 { left: 96px;  top: 330px; }
+    .s2 .big.w2 { right: 96px; top: 330px; }
+    .s2 .big.w3 { right: 96px; top: 462px; }
+
+    .s2 .big.w1::after {
+      content: '';
+      position: absolute;
+      left: -4px;
+      right: 0;
+      bottom: -22px;
+      height: 7px;
+      background: var(--yellow);
+    }
+
+    .s2 .frag {
+      left: 690px;
+      top: 596px;
+      font-size: 44px;
+      color: #fbf8f1;
+      text-shadow: 0 2px 16px rgba(40, 28, 10, .35);
+    }
+
+    .s2 .para {
+      position: absolute;
+      right: 96px;
+      top: 1098px;
+      text-align: right;
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 1.2;
+      letter-spacing: -.03em;
+      color: #fbf8f1;
+      text-shadow: 0 2px 16px rgba(40, 28, 10, .45);
+    }
+
+    .s2 .para .ref {
+      display: block;
+      margin-top: 14px;
+      font-weight: 600;
+      font-size: 22px;
+      letter-spacing: .12em;
+    }
+
+    /* ── 3: papel, coração em chamas; título azul e post-it ── */
+    .s3 .big {
+      font-size: 150px;
+      color: var(--royal);
+    }
+
+    .s3 .big.l1 { left: 96px;  top: 64px; }
+    .s3 .big.l2 { left: 296px; top: 206px; }
+
+    .s3 .note {
+      position: absolute;
+      left: 96px;
+      top: 392px;
+      padding: 18px 28px 20px;
+      border-radius: 14px;
+      background: #f5d66c;
+      box-shadow: 0 12px 22px -6px rgba(40, 34, 20, .35);
+      font-weight: 500;
+      font-size: 31px;
+      line-height: 1.22;
+      letter-spacing: -.03em;
+      color: var(--ink);
+    }
+
+    .s3 .note u {
+      text-decoration-thickness: 2px;
+      text-underline-offset: 5px;
+    }
+
+    .s3 .heart {
+      position: absolute;
+      left: 210px;
+      top: 516px;
+      width: 660px;
+      height: 700px;
+      z-index: 2;
+    }
+
+    .s3 .closing {
+      position: absolute;
+      top: 1200px;
+      width: 100%;
+      text-align: center;
+      font-weight: 500;
+      font-size: 46px;
+      letter-spacing: -.035em;
+      color: var(--royal);
+    }
+
+    /* ── 4: céu com nuvens; serviço do evento ── */
+    .s4 .handle { color: #eef0f2; }
+
+    .s4 .big {
+      font-size: 122px;
+      color: var(--yellow);
+    }
+
+    .s4 .big.l1 { right: 92px; top: 236px; display: flex; align-items: flex-end; gap: 26px; }
+    .s4 .big.l2 { left: 104px; top: 362px; }
+
+    .s4 .blank {
+      width: 250px;
+      height: 8px;
+      margin-bottom: 12px;
+      background: var(--yellow);
+    }
+
+    .s4 .sub {
+      position: absolute;
+      top: 522px;
+      width: 100%;
+      text-align: center;
+      font-weight: 500;
+      font-size: 34px;
+      letter-spacing: -.02em;
+      color: var(--yellow);
+    }
+
+    .s4 .closing {
+      position: absolute;
+      top: 1100px;
+      width: 100%;
+      text-align: center;
+      font-weight: 500;
+      font-size: 48px;
+      line-height: 1.18;
+      letter-spacing: -.035em;
+      color: #1b3d8d;
+    }
+  </style>
+</head>
+<body>
+  <div class="viewer">
+    <div class="track" id="track">
+
+      <!-- 1 ─ capa -->
+      <div class="frame">
+        <section class="slide s1">
+          <canvas class="bg" width="1080" height="1350"></canvas>
+          <div class="txt">
+            <div class="handle">@jqvteenporto</div>
+            <div class="big l1">DON'T</div>
+            <div class="big l2">STOP</div>
+
+            <div class="frag a">
+              <span>Depois</span>
+              <span style="padding-left: 62px">de orarem,</span>
+            </div>
+            <div class="frag b">
+              <span>Tremeu</span>
+              <span style="padding-left: 12px">o lugar</span>
+            </div>
+            <div class="frag c">
+              <span style="padding-left: 44px">em que</span>
+              <span>estavam</span>
+              <span style="padding-left: 70px">reunidos.</span>
+            </div>
+
+            <div class="closing">
+              <div class="line">Rompendo <em>limites</em>.</div>
+              <div class="info">15/11 &nbsp;•&nbsp; 14h &nbsp;•&nbsp; Rua Izacc Ferreira da Cruz, 3800</div>
+            </div>
+          </div>
+          <canvas class="grain" width="1080" height="1350"></canvas>
+        </section>
+      </div>
+
+      <!-- 2 ─ versículo -->
+      <div class="frame">
+        <section class="slide s2">
+          <canvas class="bg" width="1080" height="1350"></canvas>
+          <div class="txt">
+            <div class="big w1">TODOS</div>
+            <div class="big w2">FICARAM</div>
+            <div class="big w3">CHEIOS</div>
+
+            <div class="frag">
+              <span>do</span>
+              <span style="padding-left: 58px">Espírito</span>
+              <span style="padding-left: 26px">Santo.</span>
+            </div>
+
+            <div class="para">
+              e anunciavam<br>
+              <em>corajosamente</em> a palavra<br>
+              de Deus.
+              <span class="ref">Atos 4:31</span>
+            </div>
+          </div>
+          <canvas class="grain" width="1080" height="1350"></canvas>
+        </section>
+      </div>
+
+      <!-- 3 ─ coração em chamas -->
+      <div class="frame">
+        <section class="slide s3">
+          <canvas class="bg" width="1080" height="1350"></canvas>
+          <div class="txt">
+            <div class="big l1">DON'T</div>
+            <div class="big l2">STOP</div>
+
+            <div class="note">
+              Quando a igreja ora,<br>
+              o lugar <u>treme.</u>
+            </div>
+
+            <svg class="heart" viewBox="0 0 660 700" aria-hidden="true">
+              <defs>
+                <filter id="wobble" x="-5%" y="-5%" width="110%" height="110%">
+                  <feTurbulence type="fractalNoise" baseFrequency=".035" numOctaves="2" seed="7" />
+                  <feDisplacementMap in="SourceGraphic" scale="3.2" />
+                </filter>
+                <filter id="wash" x="-30%" y="-30%" width="160%" height="160%">
+                  <feTurbulence type="fractalNoise" baseFrequency=".018" numOctaves="3" seed="3" result="n" />
+                  <feDisplacementMap in="SourceGraphic" in2="n" scale="46" result="d" />
+                  <feGaussianBlur in="d" stdDeviation="14" />
+                </filter>
+                <linearGradient id="flame" x1="0" y1="1" x2="0" y2="0">
+                  <stop offset="0"   stop-color="#ffd84d" />
+                  <stop offset=".45" stop-color="#ff9d2e" />
+                  <stop offset="1"   stop-color="#e8492a" />
+                </linearGradient>
+                <radialGradient id="flesh" cx=".42" cy=".38" r=".75">
+                  <stop offset="0"   stop-color="#d95a41" />
+                  <stop offset=".55" stop-color="#a42e24" />
+                  <stop offset="1"   stop-color="#6c1b17" />
+                </radialGradient>
+                <linearGradient id="vessel" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stop-color="#d4533d" />
+                  <stop offset="1" stop-color="#8f2620" />
+                </linearGradient>
+              </defs>
+
+              <!-- brilho de aquarela atrás -->
+              <g filter="url(#wash)">
+                <ellipse cx="338" cy="370" rx="270" ry="300" fill="#ffab45" opacity=".6" />
+                <ellipse cx="338" cy="430" rx="200" ry="220" fill="#ffd36a" opacity=".65" />
+                <ellipse cx="220" cy="300" rx="80"  ry="120" fill="#ff7a3a" opacity=".35" />
+                <ellipse cx="450" cy="320" rx="80"  ry="120" fill="#ff7a3a" opacity=".35" />
+              </g>
+
+              <g id="flames" filter="url(#wobble)" stroke="#1d1410" stroke-width="3" stroke-linejoin="round"></g>
+
+              <!-- coração anatômico -->
+              <g transform="translate(120 150)" filter="url(#wobble)" stroke="#1d1410" stroke-width="3.2" stroke-linejoin="round" stroke-linecap="round">
+                <!-- veia cava superior -->
+                <path d="M112 150 L110 54 C110 42 146 42 146 54 L148 150 Z" fill="#7e2723" />
+                <ellipse cx="128" cy="52" rx="18" ry="7" fill="#2a1512" />
+
+                <!-- arco da aorta e ramos -->
+                <path d="M204 84 L198 28 C198 20 222 20 222 28 L226 78 Z" fill="url(#vessel)" />
+                <ellipse cx="210" cy="26" rx="12" ry="5" fill="#2a1512" />
+                <path d="M240 70 L238 20 C238 12 258 12 258 20 L258 68 Z" fill="url(#vessel)" />
+                <ellipse cx="248" cy="18" rx="10" ry="4.5" fill="#2a1512" />
+                <path d="M272 74 L276 28 C276 20 296 22 294 30 L290 82 Z" fill="url(#vessel)" />
+                <ellipse cx="285" cy="27" rx="10" ry="4.5" fill="#2a1512" />
+                <path d="M166 200 C160 140 168 84 222 70 C272 58 314 82 320 138 L322 176 L292 178 L290 140 C288 108 262 94 232 98 C208 102 200 136 206 200 Z" fill="url(#vessel)" />
+                <path d="M186 150 C188 118 204 94 230 86" fill="none" stroke-width="2" opacity=".6" />
+
+                <!-- átrio direito e aurícula -->
+                <path d="M148 148 C118 140 90 162 90 196 C90 226 110 246 134 250 L170 238 L172 176 C168 160 160 152 148 148 Z" fill="#8f2a23" />
+                <path d="M152 178 C132 168 110 178 106 200 C120 192 138 196 150 208" fill="#a8362b" />
+
+                <!-- tronco pulmonar -->
+                <path d="M212 222 C210 190 226 162 256 150 C276 142 300 146 318 150 L352 146 C362 145 364 172 354 172 L322 176 C300 178 280 180 264 196 C254 206 252 216 254 230 Z" fill="#b8402f" />
+                <ellipse cx="357" cy="159" rx="7" ry="13" fill="#2a1512" />
+
+                <!-- aurícula esquerda -->
+                <path d="M296 186 C318 178 342 188 346 208 C334 202 318 206 306 216 Z" fill="#a8362b" />
+
+                <!-- ventrículos -->
+                <path d="M128 246 C104 290 108 346 140 390 C172 432 214 454 244 458 C266 460 280 446 290 424 C312 378 332 322 330 268 C328 234 316 212 296 200 C270 192 240 206 222 214 C196 224 164 230 128 246 Z" fill="url(#flesh)" />
+
+                <!-- coronárias -->
+                <g fill="none" stroke-width="2.4">
+                  <path d="M236 214 C230 262 236 330 250 390 C256 418 262 440 262 452" />
+                  <path d="M240 262 C262 272 282 290 296 312" />
+                  <path d="M244 318 C264 330 282 350 292 372" />
+                  <path d="M236 290 C214 300 196 320 186 344" />
+                  <path d="M241 352 C222 364 208 382 202 402" />
+                  <path d="M170 236 C150 252 132 280 124 312" />
+                  <path d="M290 206 C306 214 318 232 324 256" />
+                </g>
+
+                <!-- hachuras de sombra -->
+                <g fill="none" stroke-width="1.6" opacity=".8">
+                  <path d="M310 250 C314 262 316 276 316 290" />
+                  <path d="M302 300 C306 316 306 332 302 348" />
+                  <path d="M292 356 C292 370 288 384 282 398" />
+                  <path d="M150 380 C160 394 172 406 186 416" />
+                  <path d="M136 350 C142 364 150 376 160 386" />
+                  <path d="M198 432 C210 440 222 446 236 450" />
+                  <path d="M300 160 C304 166 306 172 306 178" />
+                </g>
+              </g>
+
+              <!-- chão riscado -->
+              <g fill="none" stroke="#1d1410" stroke-width="2.4" stroke-linecap="round" filter="url(#wobble)">
+                <path d="M170 640 C260 634 400 636 500 642" />
+                <path d="M210 652 C290 648 380 650 452 654" />
+                <path d="M258 664 C320 661 370 662 410 665" />
+              </g>
+            </svg>
+
+            <div class="closing">Orar, ser cheio e <em>anunciar</em>.</div>
+          </div>
+          <canvas class="grain" width="1080" height="1350"></canvas>
+        </section>
+      </div>
+
+      <!-- 4 ─ serviço -->
+      <div class="frame">
+        <section class="slide s4">
+          <canvas class="bg" width="1080" height="1350"></canvas>
+          <div class="txt">
+            <div class="handle">@jqvteenporto</div>
+            <div class="big l1"><span>15/11</span><i class="blank"></i><span>ÀS</span></div>
+            <div class="big l2">14 HORAS</div>
+            <div class="sub">Rua Izacc Ferreira da Cruz, 3800.</div>
+
+            <div class="closing">
+              <em>Don't stop</em>: rompendo<br>
+              limites.
+            </div>
+          </div>
+          <canvas class="grain" width="1080" height="1350"></canvas>
+        </section>
+      </div>
+
+    </div>
+    <button class="nav prev" aria-label="Anterior">‹</button>
+    <button class="nav next" aria-label="Próximo">›</button>
+  </div>
+  <div class="dots"><i class="on"></i><i></i><i></i><i></i></div>
+
+  <script>
+    const W = 1080, H = 1350;
+
+    // ── utilidades ──────────────────────────────────────────────
+
+    // PRNG com semente fixa: a arte sai igual em toda renderização
+    function mulberry32(a) {
+      return function () {
+        a |= 0; a = a + 0x6D2B79F5 | 0;
+        let t = Math.imul(a ^ a >>> 15, 1 | a);
+        t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+      };
+    }
+
+    function toolkit(seed) {
+      const rand = mulberry32(seed);
+      const rr = (a, b) => a + rand() * (b - a);
+      const perm = new Float32Array(1024).map(() => rand());
+      const hash = (x, y) => perm[(x * 57 + y * 131) & 1023];
+      const smooth = t => t * t * (3 - 2 * t);
+      const noise = (x, y) => {
+        const xi = Math.floor(x), yi = Math.floor(y);
+        const xf = smooth(x - xi), yf = smooth(y - yi);
+        const a = hash(xi, yi), b = hash(xi + 1, yi);
+        const c = hash(xi, yi + 1), d = hash(xi + 1, yi + 1);
+        return a + (b - a) * xf + (c - a) * yf + (a - b - c + d) * xf * yf;
+      };
+      const fbm = (x, y) => noise(x, y) * .6 + noise(x * 2.1, y * 2.1) * .3 + noise(x * 4.3, y * 4.3) * .1;
+      return { rand, rr, noise, fbm };
+    }
+
+    function layer() {
+      const c = document.createElement('canvas');
+      c.width = W; c.height = H;
+      return [c, c.getContext('2d')];
+    }
+
+    function grain(slide, seed, specks = 70) {
+      const { rand, rr } = toolkit(seed);
+      const g = slide.querySelector('.grain').getContext('2d');
+      const img = g.createImageData(W, H);
+      const d = img.data;
+      for (let i = 0; i < d.length; i += 4) {
+        d[i] = d[i + 1] = d[i + 2] = 128 + (rand() - .5) * 70;
+        d[i + 3] = 255;
+      }
+      g.putImageData(img, 0, 0);
+      for (let i = 0; i < specks; i++) {
+        g.fillStyle = rand() < .8 ? 'rgba(20, 20, 20, .9)' : 'rgba(240, 240, 240, .8)';
+        g.beginPath();
+        g.arc(rr(0, W), rr(0, H), rr(.6, 1.7), 0, Math.PI * 2);
+        g.fill();
+      }
+    }
+
+    function vignette(ctx, strength, tint = '8, 20, 35') {
+      const g = ctx.createRadialGradient(W / 2, H / 2, 360, W / 2, H / 2, 960);
+      g.addColorStop(0, `rgba(${tint}, 0)`);
+      g.addColorStop(1, `rgba(${tint}, ${strength})`);
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+    }
+
+    // ── 1: céu azul, campo de grama ao vento, pessoa de costas ──
+
+    function paintS1(slide) {
+      const { rand, rr, fbm } = toolkit(4031);
+      const ctx = slide.querySelector('.bg').getContext('2d');
+      const horizon = x => 972 + 5 * Math.sin(x / 170) + 3 * Math.sin(x / 61 + 1);
+
+      const sky = ctx.createLinearGradient(0, 0, 0, 1000);
+      sky.addColorStop(0,   '#2d67a0');
+      sky.addColorStop(.35, '#3b7cb6');
+      sky.addColorStop(.62, '#4f92c6');
+      sky.addColorStop(.86, '#7ab1d8');
+      sky.addColorStop(1,   '#a9cfe6');
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, W, H);
+
+      const glow = ctx.createRadialGradient(540, 620, 40, 540, 620, 720);
+      glow.addColorStop(0, 'rgba(160, 205, 235, .3)');
+      glow.addColorStop(1, 'rgba(160, 205, 235, 0)');
+      ctx.fillStyle = glow;
+      ctx.fillRect(0, 0, W, H);
+
+      // nuvens finas no horizonte
+      ctx.save();
+      ctx.filter = 'blur(5px)';
+      for (let i = 0; i < 26; i++) {
+        const x = rr(220, 560), y = rr(944, 968);
+        ctx.fillStyle = `rgba(250, 251, 252, ${rr(.18, .45).toFixed(2)})`;
+        ctx.beginPath();
+        ctx.ellipse(x, y, rr(18, 60), rr(3, 8), rr(-.08, .08), 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.restore();
+
+      // base do campo
+      ctx.beginPath();
+      ctx.moveTo(0, H);
+      for (let x = 0; x <= W; x += 4) ctx.lineTo(x, horizon(x));
+      ctx.lineTo(W, H);
+      ctx.closePath();
+      const ground = ctx.createLinearGradient(0, 960, 0, H);
+      ground.addColorStop(0,   '#9fb466');
+      ground.addColorStop(.1,  '#7d9a44');
+      ground.addColorStop(.4,  '#5a832f');
+      ground.addColorStop(.75, '#3f6a24');
+      ground.addColorStop(1,   '#233f18');
+      ctx.fillStyle = ground;
+      ctx.fill();
+
+      function blades(yFrom, yTo, count) {
+        const list = [];
+        for (let i = 0; i < count; i++) {
+          const x = rr(-120, W + 20);
+          list.push([x, rr(Math.max(yFrom, horizon(x)), yTo)]);
+        }
+        list.sort((a, b) => a[1] - b[1]);
+        ctx.lineCap = 'round';
+        for (const [x, y] of list) {
+          const t = Math.min(1, Math.max(0, (y - 965) / 385));
+          const len = 3 + Math.pow(t, 1.15) * 250 * rr(.45, 1.15);
+          // vento da esquerda para a direita: quanto mais perto, mais deitada a grama
+          const wind = fbm(x / 300 + y / 700, y / 110);
+          const lean = .45 + t * .75 + wind * .7 + rr(-.15, .15);
+          const tipX = x + Math.sin(lean) * len;
+          const tipY = y - Math.cos(lean) * len * .6;
+          const cX = x + Math.sin(lean * .5) * len * .5;
+          const cY = y - Math.cos(lean * .5) * len * .55;
+
+          const sheen = fbm(x / 210 - y / 260, y / 55 + 7);
+          const hl = Math.max(0, sheen - .5) * 2.4;
+          const haze = 1 - Math.min(1, t * 3.2);
+          const k = rand();
+          let c;
+          if (k < .38)      c = [30, 56, 20];
+          else if (k < .74) c = [78, 118, 42];
+          else              c = [150, 176, 84];
+          c = [
+            (c[0] + hl * 130) * (1 - haze * .5) + 160 * haze * .5,
+            (c[1] + hl * 115) * (1 - haze * .5) + 184 * haze * .5,
+            (c[2] + hl * 45)  * (1 - haze * .5) + 150 * haze * .5
+          ];
+          ctx.strokeStyle = `rgba(${c[0] | 0}, ${c[1] | 0}, ${c[2] | 0}, ${rr(.55, .95).toFixed(2)})`;
+          ctx.lineWidth = .45 + t * 1.9 * rr(.5, 1.1);
+          ctx.beginPath();
+          ctx.moveTo(x, y);
+          ctx.quadraticCurveTo(cX, cY, tipX, tipY);
+          ctx.stroke();
+        }
+      }
+
+      blades(958, 1012, 12000);
+
+      const haze = ctx.createLinearGradient(0, 940, 0, 1040);
+      haze.addColorStop(0,   'rgba(185, 214, 230, 0)');
+      haze.addColorStop(.35, 'rgba(185, 214, 230, .3)');
+      haze.addColorStop(1,   'rgba(185, 214, 230, 0)');
+      ctx.fillStyle = haze;
+      ctx.fillRect(0, 940, W, 100);
+
+      // pessoa de costas
+      ctx.save();
+      ctx.translate(530, 1004);
+      ctx.fillStyle = ctx.strokeStyle = '#18202c';
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.lineWidth = 8.5;
+      ctx.beginPath(); ctx.moveTo(-4.5, -60); ctx.lineTo(-6, -3); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(4.5, -60);  ctx.lineTo(7, -5);  ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(-3.5, -106);
+      ctx.quadraticCurveTo(-12.5, -105, -14, -98);
+      ctx.lineTo(-11, -56);
+      ctx.lineTo(11, -56);
+      ctx.lineTo(14, -98);
+      ctx.quadraticCurveTo(12.5, -105, 3.5, -106);
+      ctx.closePath();
+      ctx.fill();
+      ctx.lineWidth = 5.5;
+      ctx.beginPath(); ctx.moveTo(-13, -97); ctx.quadraticCurveTo(-16.5, -78, -15.5, -56); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(13, -97);  ctx.quadraticCurveTo(16.5, -78, 15, -57);    ctx.stroke();
+      ctx.fillRect(-2.8, -111, 5.6, 7);
+      ctx.beginPath();
+      ctx.ellipse(0, -117, 5.8, 7, 0, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+
+      blades(1000, H + 90, 42000);
+
+      vignette(ctx, .42);
+      const base = ctx.createLinearGradient(0, 1080, 0, H);
+      base.addColorStop(0, 'rgba(12, 24, 12, 0)');
+      base.addColorStop(1, 'rgba(12, 24, 12, .38)');
+      ctx.fillStyle = base;
+      ctx.fillRect(0, 1080, W, H - 1080);
+
+      grain(slide, 11);
+    }
+
+    // ── 2: céu nublado, montanhas desfocadas, campo dourado, braços erguidos ──
+
+    function paintS2(slide) {
+      const { rand, rr, fbm, noise } = toolkit(2717);
+      const ctx = slide.querySelector('.bg').getContext('2d');
+
+      // céu nublado com textura
+      const img = ctx.createImageData(W, 700);
+      for (let y = 0; y < 700; y++) {
+        for (let x = 0; x < W; x++) {
+          const n = fbm(x / 260, y / 150) * .75 + noise(x / 60, y / 40) * .25;
+          const v = 196 + n * 44 - y * .02;
+          const i = (y * W + x) * 4;
+          img.data[i] = v - 6; img.data[i + 1] = v; img.data[i + 2] = v + 2; img.data[i + 3] = 255;
+        }
+      }
+      ctx.putImageData(img, 0, 0);
+
+      const [far, fctx] = layer();
+
+      function ridge(points, jitter, fill, freq) {
+        fctx.beginPath();
+        fctx.moveTo(-40, H);
+        for (let x = -40; x <= W + 40; x += 6) {
+          let i = 0;
+          while (i < points.length - 2 && x > points[i + 1][0]) i++;
+          const [x0, y0] = points[i], [x1, y1] = points[i + 1];
+          const t = Math.min(1, Math.max(0, (x - x0) / (x1 - x0)));
+          const y = y0 + (y1 - y0) * (t * t * (3 - 2 * t)) + (fbm(x / freq, 3.3) - .5) * jitter;
+          fctx.lineTo(x, y);
+        }
+        fctx.lineTo(W + 40, H);
+        fctx.closePath();
+        fctx.fillStyle = fill;
+        fctx.fill();
+      }
+
+      const m1 = fctx.createLinearGradient(0, 80, 0, 620);
+      m1.addColorStop(0, '#4f6d6c');
+      m1.addColorStop(1, '#344f4b');
+      ridge([[-40, 60], [180, 160], [420, 330], [600, 430], [820, 340], [1120, 250]], 50, m1, 140);
+
+      const m2 = fctx.createLinearGradient(0, 400, 0, 700);
+      m2.addColorStop(0, '#355242');
+      m2.addColorStop(1, '#253c2e');
+      ridge([[-40, 470], [300, 520], [620, 560], [900, 500], [1120, 470]], 40, m2, 90);
+
+      // linha de árvores
+      for (let i = 0; i < 260; i++) {
+        const x = rr(-40, W + 40), y = rr(560, 690);
+        const r = rr(18, 46);
+        const autumn = x < 260 && rand() < .35;
+        fctx.fillStyle = autumn
+          ? `rgba(${rr(120, 160) | 0}, ${rr(70, 95) | 0}, 40, .85)`
+          : `rgba(${rr(26, 50) | 0}, ${rr(52, 78) | 0}, ${rr(36, 52) | 0}, .9)`;
+        fctx.beginPath();
+        fctx.ellipse(x, y, r, r * .85, 0, 0, Math.PI * 2);
+        fctx.fill();
+      }
+
+      // começo do campo com borda irregular, desfocado junto com o fundo
+      fctx.beginPath();
+      fctx.moveTo(-40, H);
+      for (let x = -40; x <= W + 40; x += 8) fctx.lineTo(x, 684 + (fbm(x / 60, 9.1) - .5) * 26);
+      fctx.lineTo(W + 40, H);
+      fctx.closePath();
+      fctx.fillStyle = '#a8834f';
+      fctx.fill();
+      for (let i = 0; i < 70; i++) {
+        fctx.fillStyle = rand() < .6 ? 'rgba(96, 104, 58, .55)' : 'rgba(186, 150, 96, .6)';
+        fctx.beginPath();
+        fctx.ellipse(rr(-40, W + 40), rr(684, 740), rr(30, 90), rr(6, 14), 0, 0, Math.PI * 2);
+        fctx.fill();
+      }
+
+      ctx.save();
+      ctx.filter = 'blur(9px)';
+      ctx.drawImage(far, 0, 0);
+      ctx.restore();
+
+      // névoa entre montanha e campo
+      const mist = ctx.createLinearGradient(0, 380, 0, 720);
+      mist.addColorStop(0, 'rgba(210, 214, 206, 0)');
+      mist.addColorStop(.6, 'rgba(210, 214, 206, .18)');
+      mist.addColorStop(1, 'rgba(210, 214, 206, 0)');
+      ctx.fillStyle = mist;
+      ctx.fillRect(0, 380, W, 340);
+
+      // campo dourado
+      const [field, dctx] = layer();
+      const fg = dctx.createLinearGradient(0, 700, 0, H);
+      fg.addColorStop(0,   'rgba(168, 131, 79, 0)');
+      fg.addColorStop(.12, 'rgba(180, 140, 84, .85)');
+      fg.addColorStop(.3,  '#c09356');
+      fg.addColorStop(.65, '#b3814a');
+      fg.addColorStop(1,   '#8a5c34');
+      dctx.fillStyle = fg;
+      dctx.fillRect(0, 700, W, H);
+
+      dctx.lineCap = 'round';
+      for (let i = 0; i < 26000; i++) {
+        const y = 712 + Math.pow(rand(), .8) * 670;
+        const x = rr(-20, W + 20);
+        const t = (y - 680) / 670;
+        const len = 3 + t * 34 * rr(.5, 1.3);
+        const tone = fbm(x / 140, y / 70);
+        const k = rand();
+        let c;
+        if (k < .3)       c = [150, 104, 58];
+        else if (k < .75) c = [196, 150, 88];
+        else              c = [226, 196, 140];
+        const shade = .85 + tone * .3;
+        dctx.strokeStyle = `rgba(${c[0] * shade | 0}, ${c[1] * shade | 0}, ${c[2] * shade | 0}, .55)`;
+        dctx.lineWidth = .6 + t * 1.6;
+        dctx.beginPath();
+        dctx.moveTo(x, y);
+        dctx.lineTo(x + rr(-.25, .35) * len, y - len);
+        dctx.stroke();
+      }
+      // pontinhos de flores brancas e lilases
+      for (let i = 0; i < 900; i++) {
+        const y = 690 + Math.pow(rand(), .9) * 660;
+        const t = (y - 680) / 670;
+        dctx.fillStyle = rand() < .8 ? `rgba(245, 240, 228, ${rr(.35, .75)})` : `rgba(196, 170, 214, ${rr(.35, .7)})`;
+        dctx.beginPath();
+        dctx.arc(rr(0, W), y, .8 + t * rr(1.5, 4.5), 0, Math.PI * 2);
+        dctx.fill();
+      }
+      ctx.save();
+      ctx.filter = 'blur(2.2px)';
+      ctx.drawImage(field, 0, 0);
+      ctx.restore();
+
+      // pessoa de costas, braços erguidos
+      // pessoa de costas com os braços erguidos em V
+      ctx.save();
+      ctx.translate(318, 1240);
+      ctx.scale(1.18, 1.18);
+      ctx.fillStyle = ctx.strokeStyle = '#2b221d';
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      ctx.filter = 'blur(.5px)';
+      for (const s of [-1, 1]) {
+        // braço e antebraço
+        ctx.lineWidth = 25;
+        ctx.beginPath(); ctx.moveTo(s * 40, -148); ctx.lineTo(s * 66, -206); ctx.stroke();
+        ctx.lineWidth = 19;
+        ctx.beginPath(); ctx.moveTo(s * 66, -206); ctx.lineTo(s * 84, -262); ctx.stroke();
+        // mão aberta e polegar
+        ctx.save();
+        ctx.translate(s * 89, -280);
+        ctx.rotate(s * .3);
+        ctx.beginPath(); ctx.ellipse(0, 0, 9.5, 16, 0, 0, Math.PI * 2); ctx.fill();
+        ctx.restore();
+        ctx.lineWidth = 5.5;
+        ctx.beginPath(); ctx.moveTo(s * 82, -268); ctx.lineTo(s * 74, -282); ctx.stroke();
+      }
+      // tronco com ombros arredondados
+      ctx.beginPath();
+      ctx.moveTo(-38, 0);
+      ctx.bezierCurveTo(-36, -30, -31, -52, -32, -74);
+      ctx.bezierCurveTo(-34, -104, -44, -126, -50, -146);
+      ctx.bezierCurveTo(-52, -160, -40, -168, -26, -170);
+      ctx.lineTo(-11, -176);
+      ctx.lineTo(11, -176);
+      ctx.lineTo(26, -170);
+      ctx.bezierCurveTo(40, -168, 52, -160, 50, -146);
+      ctx.bezierCurveTo(44, -126, 34, -104, 32, -74);
+      ctx.bezierCurveTo(31, -52, 36, -30, 38, 0);
+      ctx.closePath();
+      ctx.fill();
+      // pescoço, cabeça levemente erguida e cabelo preso
+      ctx.fillRect(-10, -190, 20, 18);
+      ctx.beginPath(); ctx.ellipse(0, -204, 17, 21, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.ellipse(0, -186, 13, 8, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+
+      // capim do primeiro plano cobrindo a cintura, desfocado
+      const [front, pctx] = layer();
+      pctx.lineCap = 'round';
+      for (let i = 0; i < 5200; i++) {
+        const y = rr(1080, H + 60);
+        const x = rr(-20, W + 20);
+        const t = (y - 1080) / 270;
+        const len = 30 + t * 110 * rr(.5, 1.2);
+        const k = rand();
+        const c = k < .35 ? [140, 96, 52] : k < .8 ? [192, 146, 86] : [228, 200, 146];
+        pctx.strokeStyle = `rgba(${c[0]}, ${c[1]}, ${c[2]}, ${rr(.5, .85).toFixed(2)})`;
+        pctx.lineWidth = 1 + t * 2.4;
+        pctx.beginPath();
+        pctx.moveTo(x, y);
+        pctx.quadraticCurveTo(x + rr(-8, 12), y - len * .6, x + rr(-18, 26), y - len);
+        pctx.stroke();
+      }
+      ctx.save();
+      ctx.filter = 'blur(3.5px)';
+      ctx.drawImage(front, 0, 0);
+      ctx.restore();
+
+      vignette(ctx, .32, '40, 26, 14');
+      const warm = ctx.createLinearGradient(0, 0, 0, H);
+      warm.addColorStop(0, 'rgba(255, 236, 200, .04)');
+      warm.addColorStop(1, 'rgba(120, 70, 30, .18)');
+      ctx.fillStyle = warm;
+      ctx.fillRect(0, 0, W, H);
+
+      grain(slide, 23);
+    }
+
+    // ── 3: papel texturizado + chamas geradas no SVG ──
+
+    function paintS3(slide) {
+      const { rand, rr, noise } = toolkit(777);
+      const ctx = slide.querySelector('.bg').getContext('2d');
+      const img = ctx.createImageData(W, H);
+      for (let y = 0; y < H; y++) {
+        for (let x = 0; x < W; x++) {
+          const n = noise(x / 3.2, y / 3.2) * .5 + noise(x / 11, y / 11) * .3 + noise(x / 90, y / 90) * .2;
+          const v = 206 + n * 26 + (rand() - .5) * 8;
+          const i = (y * W + x) * 4;
+          img.data[i] = v + 2; img.data[i + 1] = v + 1; img.data[i + 2] = v - 3; img.data[i + 3] = 255;
+        }
+      }
+      ctx.putImageData(img, 0, 0);
+
+      // fibras do papel
+      for (let i = 0; i < 1400; i++) {
+        const x = rr(0, W), y = rr(0, H), a = rr(0, Math.PI), l = rr(3, 12);
+        ctx.strokeStyle = rand() < .5 ? 'rgba(255, 255, 255, .35)' : 'rgba(120, 116, 108, .18)';
+        ctx.lineWidth = rr(.5, 1.1);
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + Math.cos(a) * l, y + Math.sin(a) * l);
+        ctx.stroke();
+      }
+      vignette(ctx, .16, '60, 56, 48');
+
+      // chamas: coroas de fogo em camadas (vermelha, laranja, amarela) atrás do coração
+      const NS = 'http://www.w3.org/2000/svg';
+      const g = slide.querySelector('#flames');
+
+      function crown({ cx, cy, rx, ry, n, len, lean, seed }) {
+        const { rr } = toolkit(seed);
+        const at = (a, k = 1) => [cx + Math.cos(a) * rx * k, cy - Math.sin(a) * ry * k];
+        const a0 = Math.PI * 1.08, a1 = -Math.PI * .08;
+        const valleys = [];
+        for (let i = 0; i <= n; i++) {
+          valleys.push(at(a0 + (a1 - a0) * i / n, i === 0 || i === n ? 1 : rr(.84, .95)));
+        }
+        // fecha por trás da ponta do coração, sem desenhar uma "tigela" embaixo
+        const bottom = [cx, 596];
+        let d = `M${bottom[0]} ${bottom[1]} Q${cx - rx * .62} ${cy + ry * .78} ${valleys[0][0]} ${valleys[0][1]}`;
+        for (let i = 0; i < n; i++) {
+          const u = (i + .5) / n;
+          const a = a0 + (a1 - a0) * u;
+          const [bx, by] = at(a);
+          let dx = Math.cos(a) * .5, dy = -Math.sin(a) * .5 - 1;
+          const m = Math.hypot(dx, dy);
+          dx /= m; dy /= m;
+          const L = len * (.5 + .5 * Math.sin(Math.PI * u)) * rr(.85, 1.15);
+          const side = (u - .5) * 2;
+          const curl = rr(-1, 1);
+          const tx = bx + dx * L + side * lean * rr(.6, 1.2);
+          const ty = by + dy * L;
+          const [vx, vy] = valleys[i], [wx, wy] = valleys[i + 1];
+          // subida com barriga em S, ponta fina, descida mais reta
+          d += ` C${vx + dx * L * .15} ${vy - L * .35} ${tx - L * (.14 + .1 * curl) - side * L * .12} ${ty + L * .52} ${tx} ${ty}`;
+          d += ` C${tx + L * (.04 + .1 * curl)} ${ty + L * .42} ${wx - dx * L * .05} ${wy - L * .38} ${wx} ${wy}`;
+        }
+        d += ` Q${cx + rx * .62} ${cy + ry * .78} ${bottom[0]} ${bottom[1]} Z`;
+        return d;
+      }
+
+      const layers = [
+        { fill: 'url(#flame)', sw: 3.4, cx: 338, cy: 424, rx: 186, ry: 226, n: 9, len: 222, lean: 34, seed: 5 },
+        { fill: '#ff9f33',     sw: 2.6, cx: 338, cy: 440, rx: 160, ry: 196, n: 8, len: 156, lean: 24, seed: 9 },
+        { fill: '#ffe07a',     sw: 2,   cx: 338, cy: 456, rx: 134, ry: 168, n: 7, len: 104, lean: 14, seed: 13 }
+      ];
+      for (const l of layers) {
+        const p = document.createElementNS(NS, 'path');
+        p.setAttribute('d', crown(l));
+        p.setAttribute('fill', l.fill);
+        p.setAttribute('stroke-width', l.sw);
+        g.appendChild(p);
+      }
+
+      // brasas soltas
+      const embers = [[168, 236, 5], [506, 214, 4.5], [226, 150, 3.5], [458, 128, 4], [138, 352, 3.5], [540, 340, 3.5], [352, 92, 4], [196, 196, 2.5], [480, 168, 2.5]];
+      for (const [x, y, r] of embers) {
+        const e = document.createElementNS(NS, 'circle');
+        e.setAttribute('cx', x);
+        e.setAttribute('cy', y);
+        e.setAttribute('r', r);
+        e.setAttribute('fill', '#ffb13d');
+        e.setAttribute('stroke-width', '2');
+        g.appendChild(e);
+      }
+
+      grain(slide, 37, 50);
+    }
+
+    // ── 4: céu azul e nuvem de tempestade iluminada ──
+
+    function paintS4(slide) {
+      const { rand, rr, fbm } = toolkit(1511);
+      const ctx = slide.querySelector('.bg').getContext('2d');
+
+      const sky = ctx.createLinearGradient(0, 0, 0, H);
+      sky.addColorStop(0,  '#3d5d8a');
+      sky.addColorStop(.5, '#4a6c98');
+      sky.addColorStop(1,  '#587ca6');
+      ctx.fillStyle = sky;
+      ctx.fillRect(0, 0, W, H);
+
+      // contorno de cima da nuvem (sobe pela esquerda, desce pela direita)
+      const topAt = x => {
+        const pts = [[-80, 560], [60, 560], [200, 620], [330, 760], [470, 700], [620, 730], [760, 860], [860, 1010], [960, 1200], [1100, 1420]];
+        let i = 0;
+        while (i < pts.length - 2 && x > pts[i + 1][0]) i++;
+        const [x0, y0] = pts[i], [x1, y1] = pts[i + 1];
+        const t = Math.min(1, Math.max(0, (x - x0) / (x1 - x0)));
+        return y0 + (y1 - y0) * (t * t * (3 - 2 * t));
+      };
+
+      // A nuvem é um mapa de altura: união suave (log-soma-exp) de semiesferas,
+      // bolhas grandes com bolhas menores por cima, iluminada pela normal de cada pixel.
+      const K = 5;
+      const acc = new Float64Array(W * H);
+      function sphere(cx, cy, r) {
+        const x0 = Math.max(0, Math.floor(cx - r)), x1 = Math.min(W - 1, Math.ceil(cx + r));
+        const y0 = Math.max(0, Math.floor(cy - r)), y1 = Math.min(H - 1, Math.ceil(cy + r));
+        const r2 = r * r;
+        for (let y = y0; y <= y1; y++) {
+          const dy = y - cy;
+          for (let x = x0; x <= x1; x++) {
+            const dx = x - cx, d2 = dx * dx + dy * dy;
+            if (d2 >= r2) continue;
+            acc[y * W + x] += Math.exp(Math.sqrt(r2 - d2) / K);
+          }
+        }
+      }
+      function cauliflower(cx, cy, r, depth) {
+        sphere(cx, cy, r);
+        if (depth === 0 || r < 16) return;
+        const kids = 2 + (rand() * 2 | 0);
+        for (let k = 0; k < kids; k++) {
+          const a = rr(-Math.PI * .92, -Math.PI * .08);
+          const d = r * rr(.62, .8);
+          cauliflower(cx + Math.cos(a) * d, cy + Math.sin(a) * d, r * rr(.36, .52), depth - 1);
+        }
+      }
+
+      for (let i = 0; i < 46; i++) {
+        const x = rr(-160, 980);
+        sphere(x, rr(topAt(x) + 220, H + 260), rr(160, 250));
+      }
+      for (let row = 0; row < 6; row++) {
+        for (let x = -100; x < 1040; x += rr(70, 120)) {
+          const y = topAt(x) + 120 + row * 150 + (fbm(x / 140, row * 1.7) - .5) * 90;
+          if (y > H + 120) continue;
+          cauliflower(x, y, rr(70, 125), 1);
+        }
+      }
+      for (let x = -100; x < 1060; x += rr(46, 78)) {
+        const top = topAt(x);
+        if (top > H + 80) continue;
+        const r = rr(52, 104) * (x > 820 ? .8 : 1);
+        cauliflower(x, top + r * .7, r, 2);
+      }
+      for (let i = 0; i < 6; i++) cauliflower(rr(990, 1100), rr(1300, 1420), rr(50, 90), 1);
+
+      // suaviza o mapa de altura (blur em caixa, horizontal e vertical)
+      function boxBlur(src, r) {
+        const out = new Float32Array(src.length);
+        for (let y = 0; y < H; y++) {
+          let acc = 0;
+          for (let x = -r; x <= r; x++) acc += src[y * W + Math.min(W - 1, Math.max(0, x))];
+          for (let x = 0; x < W; x++) {
+            out[y * W + x] = acc / (2 * r + 1);
+            acc += src[y * W + Math.min(W - 1, x + r + 1)] - src[y * W + Math.max(0, x - r)];
+          }
+        }
+        const res = new Float32Array(src.length);
+        for (let x = 0; x < W; x++) {
+          let acc = 0;
+          for (let y = -r; y <= r; y++) acc += out[Math.min(H - 1, Math.max(0, y)) * W + x];
+          for (let y = 0; y < H; y++) {
+            res[y * W + x] = acc / (2 * r + 1);
+            acc += out[Math.min(H - 1, y + r + 1) * W + x] - out[Math.max(0, y - r) * W + x];
+          }
+        }
+        return res;
+      }
+      const hf = new Float32Array(W * H);
+      for (let i = 0; i < hf.length; i++) {
+        if (acc[i] <= 1) continue;
+        const h = K * Math.log(acc[i]);
+        const x = i % W, y = (i / W) | 0;
+        // textura fofa, mais forte no miolo que na borda
+        const fluff = (fbm(x / 14, y / 14) - .5) * 4 + (fbm(x / 42, y / 42) - .5) * 12;
+        hf[i] = Math.max(0, h + fluff * Math.min(1, h / 40));
+      }
+      const hs = boxBlur(boxBlur(hf, 2), 2);
+
+      const L = [-.42, -.78, .46];
+      const lm = Math.hypot(...L);
+      const img = ctx.getImageData(0, 0, W, H);
+      const px = img.data;
+      const lit = [248, 240, 226], mid = [216, 207, 192], shade = [146, 150, 160];
+      for (let y = 1; y < H - 1; y++) {
+        for (let x = 1; x < W - 1; x++) {
+          const i = y * W + x;
+          const h = hs[i];
+          if (h < .4) continue;
+          const gx = hs[i + 1] - hs[i - 1], gy = hs[i + W] - hs[i - W];
+          const nm = Math.hypot(gx, gy, 3);
+          const diff = Math.max(0, (-gx * L[0] - gy * L[1] + 3 * L[2]) / (nm * lm));
+          const ao = .7 + .3 * Math.min(1, h / 90);
+          let v = Math.min(1, Math.max(0, (.2 + .92 * Math.pow(diff, 1.35)) * ao));
+          v *= 1 - Math.max(0, y - 1000) / 1800;
+          const c = v < .55
+            ? shade.map((s, k) => s + (mid[k] - s) * (v / .55))
+            : mid.map((m, k) => m + (lit[k] - m) * ((v - .55) / .45));
+          const a = Math.min(1, h / 10);
+          const p = i * 4;
+          px[p]     += (c[0] - px[p])     * a;
+          px[p + 1] += (c[1] - px[p + 1]) * a;
+          px[p + 2] += (c[2] - px[p + 2]) * a;
+        }
+      }
+      ctx.putImageData(img, 0, 0);
+
+      vignette(ctx, .3);
+      grain(slide, 41);
+    }
+
+    // ── montagem ────────────────────────────────────────────────
+
+    const slides = [...document.querySelectorAll('.slide')];
+    [paintS1, paintS2, paintS3, paintS4].forEach((paint, i) => paint(slides[i]));
+
+    const exportMode = new URLSearchParams(location.search).has('export');
+    if (exportMode) document.body.classList.add('export');
+
+    const track = document.getElementById('track');
+    const dots = [...document.querySelectorAll('.dots i')];
+    const prev = document.querySelector('.nav.prev');
+    const next = document.querySelector('.nav.next');
+    let current = 0;
+
+    function fit() {
+      if (exportMode) return;
+      const s = Math.min(innerWidth * .94 / W, (innerHeight - 50) / H);
+      document.documentElement.style.setProperty('--s', s);
+      track.scrollLeft = current * track.clientWidth;
+    }
+
+    function sync() {
+      current = Math.round(track.scrollLeft / track.clientWidth);
+      dots.forEach((d, i) => d.classList.toggle('on', i === current));
+      prev.disabled = current === 0;
+      next.disabled = current === slides.length - 1;
+    }
+
+    const go = i => track.scrollTo({ left: Math.max(0, Math.min(slides.length - 1, i)) * track.clientWidth });
+    prev.addEventListener('click', () => go(current - 1));
+    next.addEventListener('click', () => go(current + 1));
+    addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft') go(current - 1);
+      if (e.key === 'ArrowRight') go(current + 1);
+    });
+    track.addEventListener('scroll', sync, { passive: true });
+    addEventListener('resize', fit);
+    fit();
+    sync();
+  </script>
+</body>
+</html>
