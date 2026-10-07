@@ -1,0 +1,5 @@
+numpy>=2.0
+pillow>=10.0
+# só para o modo "behind" (recorte automático da pessoa)
+rembg>=2.0.60
+onnxruntime>=1.18
