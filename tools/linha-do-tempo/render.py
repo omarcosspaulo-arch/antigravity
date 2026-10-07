@@ -211,7 +211,7 @@ def probe(video):
 
 
 def video_frames(video, W, H, fps):
-    cmd = ["ffmpeg", "-v", "error", "-i", video, "-map", "0:v:0", "-vf", f"fps={fps}",
+    cmd = ["ffmpeg", "-v", "error", "-nostdin", "-i", video, "-map", "0:v:0", "-vf", f"fps={fps}",
            "-f", "rawvideo", "-pix_fmt", "rgb24", "-"]
     proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
     size = W * H * 3
