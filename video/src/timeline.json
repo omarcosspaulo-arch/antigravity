@@ -1,0 +1,1078 @@
+{
+  "titulo": "A sala onde te pagam pra não fazer nada",
+  "gancho": "ELE É PAGO PRA NÃO FAZER NADA",
+  "fps": 30,
+  "duracao": 63.062,
+  "falas": [
+    {
+      "id": "f01",
+      "cena": "gancho",
+      "texto": "Esse homem vai trabalhar todo dia... pra não fazer absolutamente nada.",
+      "arquivo": "voz/f01.wav",
+      "inicio": 0.2,
+      "fim": 4.317,
+      "palavras": [
+        {
+          "texto": "Esse",
+          "destaque": false,
+          "inicio": 0.21,
+          "fim": 0.441
+        },
+        {
+          "texto": "homem",
+          "destaque": false,
+          "inicio": 0.441,
+          "fim": 0.672
+        },
+        {
+          "texto": "vai",
+          "destaque": false,
+          "inicio": 0.672,
+          "fim": 0.787
+        },
+        {
+          "texto": "trabalhar",
+          "destaque": false,
+          "inicio": 0.787,
+          "fim": 1.134
+        },
+        {
+          "texto": "todo",
+          "destaque": false,
+          "inicio": 1.134,
+          "fim": 1.365
+        },
+        {
+          "texto": "dia...",
+          "destaque": false,
+          "inicio": 1.365,
+          "fim": 1.48
+        },
+        {
+          "texto": "pra",
+          "destaque": false,
+          "inicio": 1.57,
+          "fim": 1.797
+        },
+        {
+          "texto": "não",
+          "destaque": false,
+          "inicio": 1.797,
+          "fim": 2.023
+        },
+        {
+          "texto": "fazer",
+          "destaque": false,
+          "inicio": 2.023,
+          "fim": 2.477
+        },
+        {
+          "texto": "absolutamente",
+          "destaque": true,
+          "inicio": 2.477,
+          "fim": 3.837
+        },
+        {
+          "texto": "nada.",
+          "destaque": true,
+          "inicio": 3.837,
+          "fim": 4.29
+        }
+      ]
+    },
+    {
+      "id": "f02",
+      "cena": "escritorio",
+      "texto": "Ele trabalha há vinte anos numa grande empresa do Japão.",
+      "arquivo": "voz/f02.wav",
+      "inicio": 4.637,
+      "fim": 7.692,
+      "palavras": [
+        {
+          "texto": "Ele",
+          "destaque": false,
+          "inicio": 4.647,
+          "fim": 4.949
+        },
+        {
+          "texto": "trabalha",
+          "destaque": false,
+          "inicio": 4.949,
+          "fim": 5.402
+        },
+        {
+          "texto": "há",
+          "destaque": false,
+          "inicio": 5.402,
+          "fim": 5.553
+        },
+        {
+          "texto": "vinte",
+          "destaque": true,
+          "inicio": 5.553,
+          "fim": 5.855
+        },
+        {
+          "texto": "anos",
+          "destaque": true,
+          "inicio": 5.855,
+          "fim": 6.157
+        },
+        {
+          "texto": "numa",
+          "destaque": false,
+          "inicio": 6.157,
+          "fim": 6.459
+        },
+        {
+          "texto": "grande",
+          "destaque": false,
+          "inicio": 6.459,
+          "fim": 6.761
+        },
+        {
+          "texto": "empresa",
+          "destaque": false,
+          "inicio": 6.761,
+          "fim": 7.214
+        },
+        {
+          "texto": "do",
+          "destaque": false,
+          "inicio": 7.214,
+          "fim": 7.365
+        },
+        {
+          "texto": "Japão.",
+          "destaque": false,
+          "inicio": 7.365,
+          "fim": 7.667
+        }
+      ]
+    },
+    {
+      "id": "f03",
+      "cena": "chefe",
+      "texto": "Um dia, o chefe chama ele e diz: você foi transferido.",
+      "arquivo": "voz/f03.wav",
+      "inicio": 8.012,
+      "fim": 11.169,
+      "palavras": [
+        {
+          "texto": "Um",
+          "destaque": false,
+          "inicio": 8.022,
+          "fim": 8.171
+        },
+        {
+          "texto": "dia,",
+          "destaque": false,
+          "inicio": 8.171,
+          "fim": 8.364
+        },
+        {
+          "texto": "o",
+          "destaque": false,
+          "inicio": 8.468,
+          "fim": 8.616
+        },
+        {
+          "texto": "chefe",
+          "destaque": false,
+          "inicio": 8.616,
+          "fim": 8.913
+        },
+        {
+          "texto": "chama",
+          "destaque": false,
+          "inicio": 8.913,
+          "fim": 9.211
+        },
+        {
+          "texto": "ele",
+          "destaque": false,
+          "inicio": 9.211,
+          "fim": 9.508
+        },
+        {
+          "texto": "e",
+          "destaque": false,
+          "inicio": 9.508,
+          "fim": 9.656
+        },
+        {
+          "texto": "diz:",
+          "destaque": false,
+          "inicio": 9.656,
+          "fim": 9.849
+        },
+        {
+          "texto": "você",
+          "destaque": false,
+          "inicio": 9.953,
+          "fim": 10.251
+        },
+        {
+          "texto": "foi",
+          "destaque": false,
+          "inicio": 10.251,
+          "fim": 10.399
+        },
+        {
+          "texto": "transferido.",
+          "destaque": true,
+          "inicio": 10.399,
+          "fim": 10.882
+        }
+      ]
+    },
+    {
+      "id": "f04",
+      "cena": "chefe",
+      "texto": "Pro novo Departamento de Desenvolvimento de Carreira.",
+      "arquivo": "voz/f04.wav",
+      "inicio": 11.309,
+      "fim": 15.087,
+      "palavras": [
+        {
+          "texto": "Pro",
+          "destaque": false,
+          "inicio": 11.319,
+          "fim": 11.516
+        },
+        {
+          "texto": "novo",
+          "destaque": false,
+          "inicio": 11.516,
+          "fim": 11.911
+        },
+        {
+          "texto": "Departamento",
+          "destaque": true,
+          "inicio": 11.911,
+          "fim": 12.898
+        },
+        {
+          "texto": "de",
+          "destaque": false,
+          "inicio": 12.898,
+          "fim": 13.095
+        },
+        {
+          "texto": "Desenvolvimento",
+          "destaque": true,
+          "inicio": 13.095,
+          "fim": 14.279
+        },
+        {
+          "texto": "de",
+          "destaque": false,
+          "inicio": 14.279,
+          "fim": 14.477
+        },
+        {
+          "texto": "Carreira.",
+          "destaque": true,
+          "inicio": 14.477,
+          "fim": 15.069
+        }
+      ]
+    },
+    {
+      "id": "f05",
+      "cena": "chefe",
+      "texto": "Parece promoção, né?",
+      "arquivo": "voz/f05.wav",
+      "inicio": 15.227,
+      "fim": 16.752,
+      "palavras": [
+        {
+          "texto": "Parece",
+          "destaque": false,
+          "inicio": 15.237,
+          "fim": 15.787
+        },
+        {
+          "texto": "promoção,",
+          "destaque": true,
+          "inicio": 15.787,
+          "fim": 16.337
+        },
+        {
+          "texto": "né?",
+          "destaque": false,
+          "inicio": 16.437,
+          "fim": 16.727
+        }
+      ]
+    },
+    {
+      "id": "f06",
+      "cena": "porta",
+      "texto": "Ele abre a porta... e encontra uma sala vazia.",
+      "arquivo": "voz/f06.wav",
+      "inicio": 17.072,
+      "fim": 20.085,
+      "palavras": [
+        {
+          "texto": "Ele",
+          "destaque": false,
+          "inicio": 17.082,
+          "fim": 17.439
+        },
+        {
+          "texto": "abre",
+          "destaque": false,
+          "inicio": 17.439,
+          "fim": 17.796
+        },
+        {
+          "texto": "a",
+          "destaque": false,
+          "inicio": 17.796,
+          "fim": 17.974
+        },
+        {
+          "texto": "porta...",
+          "destaque": false,
+          "inicio": 17.974,
+          "fim": 18.332
+        },
+        {
+          "texto": "e",
+          "destaque": false,
+          "inicio": 18.552,
+          "fim": 18.702
+        },
+        {
+          "texto": "encontra",
+          "destaque": false,
+          "inicio": 18.702,
+          "fim": 19.152
+        },
+        {
+          "texto": "uma",
+          "destaque": false,
+          "inicio": 19.152,
+          "fim": 19.452
+        },
+        {
+          "texto": "sala",
+          "destaque": false,
+          "inicio": 19.452,
+          "fim": 19.752
+        },
+        {
+          "texto": "vazia.",
+          "destaque": true,
+          "inicio": 19.752,
+          "fim": 20.052
+        }
+      ]
+    },
+    {
+      "id": "f07",
+      "cena": "inventario",
+      "texto": "Uma mesa. Uma cadeira. Nenhum computador. Nenhum telefone.",
+      "arquivo": "voz/f07.wav",
+      "inicio": 20.405,
+      "fim": 24.805,
+      "palavras": [
+        {
+          "texto": "Uma",
+          "destaque": false,
+          "inicio": 20.405,
+          "fim": 20.435
+        },
+        {
+          "texto": "mesa.",
+          "destaque": false,
+          "inicio": 20.435,
+          "fim": 20.465
+        },
+        {
+          "texto": "Uma",
+          "destaque": false,
+          "inicio": 20.755,
+          "fim": 21.063
+        },
+        {
+          "texto": "cadeira.",
+          "destaque": false,
+          "inicio": 21.063,
+          "fim": 21.525
+        },
+        {
+          "texto": "Nenhum",
+          "destaque": true,
+          "inicio": 21.675,
+          "fim": 21.961
+        },
+        {
+          "texto": "computador.",
+          "destaque": false,
+          "inicio": 21.961,
+          "fim": 22.535
+        },
+        {
+          "texto": "Nenhum",
+          "destaque": true,
+          "inicio": 22.775,
+          "fim": 23.451
+        },
+        {
+          "texto": "telefone.",
+          "destaque": false,
+          "inicio": 23.451,
+          "fim": 24.805
+        }
+      ]
+    },
+    {
+      "id": "f08",
+      "cena": "inventario",
+      "texto": "Ele pergunta o que tem que fazer. A resposta: nada.",
+      "arquivo": "voz/f08.wav",
+      "inicio": 24.945,
+      "fim": 27.941,
+      "palavras": [
+        {
+          "texto": "Ele",
+          "destaque": false,
+          "inicio": 24.955,
+          "fim": 25.253
+        },
+        {
+          "texto": "pergunta",
+          "destaque": false,
+          "inicio": 25.253,
+          "fim": 25.7
+        },
+        {
+          "texto": "o",
+          "destaque": false,
+          "inicio": 25.7,
+          "fim": 25.849
+        },
+        {
+          "texto": "que",
+          "destaque": false,
+          "inicio": 25.849,
+          "fim": 25.998
+        },
+        {
+          "texto": "tem",
+          "destaque": false,
+          "inicio": 25.998,
+          "fim": 26.147
+        },
+        {
+          "texto": "que",
+          "destaque": false,
+          "inicio": 26.147,
+          "fim": 26.296
+        },
+        {
+          "texto": "fazer.",
+          "destaque": false,
+          "inicio": 26.296,
+          "fim": 26.586
+        },
+        {
+          "texto": "A",
+          "destaque": false,
+          "inicio": 26.743,
+          "fim": 26.892
+        },
+        {
+          "texto": "resposta:",
+          "destaque": false,
+          "inicio": 26.892,
+          "fim": 27.279
+        },
+        {
+          "texto": "nada.",
+          "destaque": true,
+          "inicio": 27.488,
+          "fim": 27.778
+        }
+      ]
+    },
+    {
+      "id": "f09",
+      "cena": "tempo",
+      "texto": "Então ele fica ali. Oito horas por dia. Olhando pra parede.",
+      "arquivo": "voz/f09.wav",
+      "inicio": 28.261,
+      "fim": 31.525,
+      "palavras": [
+        {
+          "texto": "Então",
+          "destaque": false,
+          "inicio": 28.271,
+          "fim": 28.542
+        },
+        {
+          "texto": "ele",
+          "destaque": false,
+          "inicio": 28.542,
+          "fim": 28.813
+        },
+        {
+          "texto": "fica",
+          "destaque": false,
+          "inicio": 28.813,
+          "fim": 29.084
+        },
+        {
+          "texto": "ali.",
+          "destaque": false,
+          "inicio": 29.084,
+          "fim": 29.348
+        },
+        {
+          "texto": "Oito",
+          "destaque": true,
+          "inicio": 29.49,
+          "fim": 29.761
+        },
+        {
+          "texto": "horas",
+          "destaque": true,
+          "inicio": 29.761,
+          "fim": 30.032
+        },
+        {
+          "texto": "por",
+          "destaque": false,
+          "inicio": 30.032,
+          "fim": 30.167
+        },
+        {
+          "texto": "dia.",
+          "destaque": false,
+          "inicio": 30.167,
+          "fim": 30.343
+        },
+        {
+          "texto": "Olhando",
+          "destaque": false,
+          "inicio": 30.438,
+          "fim": 30.844
+        },
+        {
+          "texto": "pra",
+          "destaque": false,
+          "inicio": 30.844,
+          "fim": 30.98
+        },
+        {
+          "texto": "parede.",
+          "destaque": false,
+          "inicio": 30.98,
+          "fim": 31.332
+        }
+      ]
+    },
+    {
+      "id": "f10",
+      "cena": "tempo",
+      "texto": "Dias viram semanas. Semanas viram meses.",
+      "arquivo": "voz/f10.wav",
+      "inicio": 31.665,
+      "fim": 34.348,
+      "palavras": [
+        {
+          "texto": "Dias",
+          "destaque": false,
+          "inicio": 31.685,
+          "fim": 31.904
+        },
+        {
+          "texto": "viram",
+          "destaque": false,
+          "inicio": 31.904,
+          "fim": 32.34
+        },
+        {
+          "texto": "semanas.",
+          "destaque": false,
+          "inicio": 32.34,
+          "fim": 32.995
+        },
+        {
+          "texto": "Semanas",
+          "destaque": false,
+          "inicio": 33.105,
+          "fim": 33.628
+        },
+        {
+          "texto": "viram",
+          "destaque": false,
+          "inicio": 33.628,
+          "fim": 33.977
+        },
+        {
+          "texto": "meses.",
+          "destaque": true,
+          "inicio": 33.977,
+          "fim": 34.325
+        }
+      ]
+    },
+    {
+      "id": "f11",
+      "cena": "tempo",
+      "texto": "Ele acha que esqueceram dele. Mas não. É de propósito.",
+      "arquivo": "voz/f11.wav",
+      "inicio": 34.688,
+      "fim": 38.197,
+      "palavras": [
+        {
+          "texto": "Ele",
+          "destaque": false,
+          "inicio": 34.698,
+          "fim": 34.991
+        },
+        {
+          "texto": "acha",
+          "destaque": false,
+          "inicio": 34.991,
+          "fim": 35.284
+        },
+        {
+          "texto": "que",
+          "destaque": false,
+          "inicio": 35.284,
+          "fim": 35.43
+        },
+        {
+          "texto": "esqueceram",
+          "destaque": false,
+          "inicio": 35.43,
+          "fim": 36.016
+        },
+        {
+          "texto": "dele.",
+          "destaque": false,
+          "inicio": 36.016,
+          "fim": 36.308
+        },
+        {
+          "texto": "Mas",
+          "destaque": false,
+          "inicio": 36.558,
+          "fim": 36.818
+        },
+        {
+          "texto": "não.",
+          "destaque": false,
+          "inicio": 36.818,
+          "fim": 37.078
+        },
+        {
+          "texto": "É",
+          "destaque": false,
+          "inicio": 37.228,
+          "fim": 37.385
+        },
+        {
+          "texto": "de",
+          "destaque": false,
+          "inicio": 37.385,
+          "fim": 37.542
+        },
+        {
+          "texto": "propósito.",
+          "destaque": true,
+          "inicio": 37.542,
+          "fim": 38.168
+        }
+      ]
+    },
+    {
+      "id": "f12",
+      "cena": "predio",
+      "texto": "No Japão, é muito difícil demitir um funcionário efetivo.",
+      "arquivo": "voz/f12.wav",
+      "inicio": 38.517,
+      "fim": 41.876,
+      "palavras": [
+        {
+          "texto": "No",
+          "destaque": false,
+          "inicio": 38.527,
+          "fim": 38.671
+        },
+        {
+          "texto": "Japão,",
+          "destaque": false,
+          "inicio": 38.671,
+          "fim": 38.953
+        },
+        {
+          "texto": "é",
+          "destaque": false,
+          "inicio": 39.104,
+          "fim": 39.249
+        },
+        {
+          "texto": "muito",
+          "destaque": false,
+          "inicio": 39.249,
+          "fim": 39.537
+        },
+        {
+          "texto": "difícil",
+          "destaque": false,
+          "inicio": 39.537,
+          "fim": 39.97
+        },
+        {
+          "texto": "demitir",
+          "destaque": true,
+          "inicio": 39.97,
+          "fim": 40.403
+        },
+        {
+          "texto": "um",
+          "destaque": false,
+          "inicio": 40.403,
+          "fim": 40.548
+        },
+        {
+          "texto": "funcionário",
+          "destaque": false,
+          "inicio": 40.548,
+          "fim": 41.125
+        },
+        {
+          "texto": "efetivo.",
+          "destaque": false,
+          "inicio": 41.125,
+          "fim": 41.594
+        }
+      ]
+    },
+    {
+      "id": "f13",
+      "cena": "predio",
+      "texto": "Então algumas empresas fazem outra coisa: te deixam sem nada pra fazer...",
+      "arquivo": "voz/f13.wav",
+      "inicio": 42.016,
+      "fim": 46.826,
+      "palavras": [
+        {
+          "texto": "Então",
+          "destaque": false,
+          "inicio": 42.026,
+          "fim": 42.162
+        },
+        {
+          "texto": "algumas",
+          "destaque": false,
+          "inicio": 42.162,
+          "fim": 42.366
+        },
+        {
+          "texto": "empresas",
+          "destaque": false,
+          "inicio": 42.366,
+          "fim": 42.569
+        },
+        {
+          "texto": "fazem",
+          "destaque": false,
+          "inicio": 42.569,
+          "fim": 42.705
+        },
+        {
+          "texto": "outra",
+          "destaque": false,
+          "inicio": 42.705,
+          "fim": 42.841
+        },
+        {
+          "texto": "coisa:",
+          "destaque": false,
+          "inicio": 42.841,
+          "fim": 42.976
+        },
+        {
+          "texto": "te",
+          "destaque": false,
+          "inicio": 43.206,
+          "fim": 43.605
+        },
+        {
+          "texto": "deixam",
+          "destaque": false,
+          "inicio": 43.605,
+          "fim": 44.403
+        },
+        {
+          "texto": "sem",
+          "destaque": false,
+          "inicio": 44.403,
+          "fim": 44.802
+        },
+        {
+          "texto": "nada",
+          "destaque": true,
+          "inicio": 44.802,
+          "fim": 45.6
+        },
+        {
+          "texto": "pra",
+          "destaque": false,
+          "inicio": 45.6,
+          "fim": 45.998
+        },
+        {
+          "texto": "fazer...",
+          "destaque": false,
+          "inicio": 45.998,
+          "fim": 46.796
+        }
+      ]
+    },
+    {
+      "id": "f14",
+      "cena": "carta",
+      "texto": "e esperam o tédio te vencer. Até você pedir demissão. Sozinho.",
+      "arquivo": "voz/f14.wav",
+      "inicio": 47.146,
+      "fim": 51.386,
+      "palavras": [
+        {
+          "texto": "e",
+          "destaque": false,
+          "inicio": 47.156,
+          "fim": 47.482
+        },
+        {
+          "texto": "esperam",
+          "destaque": false,
+          "inicio": 47.482,
+          "fim": 48.46
+        },
+        {
+          "texto": "o",
+          "destaque": false,
+          "inicio": 48.46,
+          "fim": 48.786
+        },
+        {
+          "texto": "tédio",
+          "destaque": true,
+          "inicio": 48.786,
+          "fim": 49.438
+        },
+        {
+          "texto": "te",
+          "destaque": false,
+          "inicio": 49.438,
+          "fim": 49.764
+        },
+        {
+          "texto": "vencer.",
+          "destaque": false,
+          "inicio": 49.764,
+          "fim": 50.416
+        },
+        {
+          "texto": "Até",
+          "destaque": false,
+          "inicio": 50.566,
+          "fim": 50.586
+        },
+        {
+          "texto": "você",
+          "destaque": false,
+          "inicio": 50.586,
+          "fim": 50.606
+        },
+        {
+          "texto": "pedir",
+          "destaque": false,
+          "inicio": 50.606,
+          "fim": 50.626
+        },
+        {
+          "texto": "demissão.",
+          "destaque": true,
+          "inicio": 50.626,
+          "fim": 50.656
+        },
+        {
+          "texto": "Sozinho.",
+          "destaque": false,
+          "inicio": 50.856,
+          "fim": 51.356
+        }
+      ]
+    },
+    {
+      "id": "f15",
+      "cena": "revelacao",
+      "texto": "Isso tem nome: oidashi-beya. A sala de expulsão.",
+      "arquivo": "voz/f15.wav",
+      "inicio": 51.706,
+      "fim": 56.298,
+      "palavras": [
+        {
+          "texto": "Isso",
+          "destaque": false,
+          "inicio": 51.706,
+          "fim": 51.726
+        },
+        {
+          "texto": "tem",
+          "destaque": false,
+          "inicio": 51.726,
+          "fim": 51.736
+        },
+        {
+          "texto": "nome:",
+          "destaque": false,
+          "inicio": 51.736,
+          "fim": 51.756
+        },
+        {
+          "texto": "oidashi-beya.",
+          "destaque": true,
+          "inicio": 52.176,
+          "fim": 52.946
+        },
+        {
+          "texto": "A",
+          "destaque": false,
+          "inicio": 53.846,
+          "fim": 54.196
+        },
+        {
+          "texto": "sala",
+          "destaque": true,
+          "inicio": 54.196,
+          "fim": 54.896
+        },
+        {
+          "texto": "de",
+          "destaque": false,
+          "inicio": 54.896,
+          "fim": 55.246
+        },
+        {
+          "texto": "expulsão.",
+          "destaque": true,
+          "inicio": 55.246,
+          "fim": 56.296
+        }
+      ]
+    },
+    {
+      "id": "f16",
+      "cena": "final",
+      "texto": "E o mais louco? Tem gente que aguenta anos lá dentro.",
+      "arquivo": "voz/f16.wav",
+      "inicio": 56.618,
+      "fim": 59.721,
+      "palavras": [
+        {
+          "texto": "E",
+          "destaque": false,
+          "inicio": 56.618,
+          "fim": 56.628
+        },
+        {
+          "texto": "o",
+          "destaque": false,
+          "inicio": 56.628,
+          "fim": 56.638
+        },
+        {
+          "texto": "mais",
+          "destaque": false,
+          "inicio": 56.638,
+          "fim": 56.648
+        },
+        {
+          "texto": "louco?",
+          "destaque": false,
+          "inicio": 56.648,
+          "fim": 56.668
+        },
+        {
+          "texto": "Tem",
+          "destaque": false,
+          "inicio": 56.848,
+          "fim": 57.085
+        },
+        {
+          "texto": "gente",
+          "destaque": false,
+          "inicio": 57.085,
+          "fim": 57.56
+        },
+        {
+          "texto": "que",
+          "destaque": false,
+          "inicio": 57.56,
+          "fim": 57.798
+        },
+        {
+          "texto": "aguenta",
+          "destaque": false,
+          "inicio": 57.798,
+          "fim": 58.51
+        },
+        {
+          "texto": "anos",
+          "destaque": true,
+          "inicio": 58.51,
+          "fim": 58.985
+        },
+        {
+          "texto": "lá",
+          "destaque": false,
+          "inicio": 58.985,
+          "fim": 59.223
+        },
+        {
+          "texto": "dentro.",
+          "destaque": false,
+          "inicio": 59.223,
+          "fim": 59.698
+        }
+      ]
+    },
+    {
+      "id": "f17",
+      "cena": "final",
+      "texto": "E você... aguentaria?",
+      "arquivo": "voz/f17.wav",
+      "inicio": 60.111,
+      "fim": 61.262,
+      "palavras": [
+        {
+          "texto": "E",
+          "destaque": false,
+          "inicio": 60.111,
+          "fim": 60.131
+        },
+        {
+          "texto": "você...",
+          "destaque": false,
+          "inicio": 60.131,
+          "fim": 60.171
+        },
+        {
+          "texto": "aguentaria?",
+          "destaque": true,
+          "inicio": 60.291,
+          "fim": 61.241
+        }
+      ]
+    }
+  ]
+}

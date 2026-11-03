@@ -1,0 +1,36 @@
+// Paleta pastel/saturada no estilo "diorama"
+export const COR = {
+  pele: "#f5c9a3",
+  peleSombra: "#e3a982",
+  bochecha: "#f29a8f",
+  tracos: "#1d1b26",
+  boca: "#7c2b33",
+  cabeloPreto: "#24212c",
+  grisalho: "#b9b6bf",
+  ternoAzul: "#2f3f73",
+  ternoCinza: "#5a5f6e",
+  camisa: "#fbfaf6",
+  gravataVermelha: "#e0393e",
+  calca: "#26304f",
+  sapato: "#1b1b22",
+
+  piso: "#e6b57e",
+  pisoEscuro: "#d39d63",
+  parede: "#f6ecd9",
+  paredeLateral: "#a9dcc8",
+  rodape: "#e2c89e",
+  mesa: "#fbf7ef",
+  mesaLateral: "#e7dfcf",
+  metal: "#545b6e",
+  cadeira: "#3d4f7c",
+
+  carpete: "#7fb0c8",
+  paredeEscritorio: "#ffd98a",
+  tela: "#6fd3ff",
+
+  vermelhoJP: "#d7263d",
+  amarelo: "#ffd60a",
+  ceuDia: "#8fd3ff",
+  ceuTarde: "#ffb27a",
+  ceuNoite: "#1d2a5b",
+};

@@ -1,0 +1,28 @@
+{
+  "titulo": "A sala onde te pagam pra não fazer nada",
+  "gancho": "ELE É PAGO PRA NÃO FAZER NADA",
+  "voz": {
+    "velocidade": 0.78,
+    "pausaEntreFalas": 0.14,
+    "pausaEntreCenas": 0.32
+  },
+  "falas": [
+    { "id": "f01", "cena": "gancho", "texto": "Esse homem vai trabalhar todo dia... pra não fazer *absolutamente* *nada*." },
+    { "id": "f02", "cena": "escritorio", "texto": "Ele trabalha há *vinte* *anos* numa grande empresa do Japão." },
+    { "id": "f03", "cena": "chefe", "texto": "Um dia, o chefe chama ele e diz: você foi *transferido*." },
+    { "id": "f04", "cena": "chefe", "texto": "Pro novo *Departamento* de *Desenvolvimento* de *Carreira*." },
+    { "id": "f05", "cena": "chefe", "texto": "Parece *promoção*, né?" },
+    { "id": "f06", "cena": "porta", "texto": "Ele abre a porta... e encontra uma sala *vazia*." },
+    { "id": "f07", "cena": "inventario", "texto": "Uma mesa. Uma cadeira. *Nenhum* computador. *Nenhum* telefone." },
+    { "id": "f08", "cena": "inventario", "texto": "Ele pergunta o que tem que fazer. A resposta: *nada*." },
+    { "id": "f09", "cena": "tempo", "texto": "Então ele fica ali. *Oito* *horas* por dia. Olhando pra parede." },
+    { "id": "f10", "cena": "tempo", "texto": "Dias viram semanas. Semanas viram *meses*." },
+    { "id": "f11", "cena": "tempo", "texto": "Ele acha que esqueceram dele. Mas não. É de *propósito*.", "pausaAntes": 0.2 },
+    { "id": "f12", "cena": "predio", "texto": "No Japão, é muito difícil *demitir* um funcionário efetivo." },
+    { "id": "f13", "cena": "predio", "texto": "Então algumas empresas fazem outra coisa: te deixam sem *nada* pra fazer..." },
+    { "id": "f14", "cena": "carta", "texto": "e esperam o *tédio* te vencer. Até você pedir *demissão*. Sozinho." },
+    { "id": "f15", "cena": "revelacao", "texto": "Isso tem nome: *oidashi-beya*. A *sala* de *expulsão*.", "tts": "Isso tem nome: oidáchi-beia. A sala de expulsão." },
+    { "id": "f16", "cena": "final", "texto": "E o mais louco? Tem gente que aguenta *anos* lá dentro." },
+    { "id": "f17", "cena": "final", "texto": "E você... *aguentaria*?", "pausaAntes": 0.25 }
+  ]
+}
